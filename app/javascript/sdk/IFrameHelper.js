@@ -36,6 +36,8 @@ import addHours from 'date-fns/addHours';
 const updateAuthCookie = (cookieContent, baseDomain = '') =>
   setCookieWithDomain('cw_conversation', cookieContent, {
     baseDomain,
+    secure: true,
+    httpOnly: true,
   });
 
 const updateCampaignReadStatus = baseDomain => {
