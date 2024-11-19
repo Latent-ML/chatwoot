@@ -99,13 +99,17 @@ export const IFrameHelper = {
     const allowedOrigin = new URL(IFrameHelper.baseUrl).origin;
 
     window.onmessage = e => {
+      console.log('Message Origin:', e.origin);
+      console.log('Allowed Origin:', allowedOrigin);
+
       if (e.origin !== allowedOrigin) return;
 
       if (
         typeof e.data !== 'string' ||
         e.data.indexOf('chatwoot-widget:') !== 0
-      )  return;
-      
+      )
+        return;
+
       const message = JSON.parse(e.data.replace('chatwoot-widget:', ''));
       if (typeof IFrameHelper.events[message.event] === 'function') {
         IFrameHelper.events[message.event](message);
