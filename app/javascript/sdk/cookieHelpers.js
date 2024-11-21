@@ -26,12 +26,14 @@ export const hasUserKeys = user =>
 export const setCookieWithDomain = (
   name,
   value,
-  { expires = 365, baseDomain = undefined } = {}
+  { expires = 365, baseDomain = undefined, secure = undefined, httpOnly = undefined } = {}
 ) => {
   const cookieOptions = {
     expires,
     sameSite: 'Lax',
     domain: baseDomain,
+    secure,
+    httpOnly,
   };
 
   // if type of value is object, stringify it
