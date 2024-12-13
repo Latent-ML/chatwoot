@@ -96,14 +96,10 @@ export const IFrameHelper = {
     );
   },
   initPostMessageCommunication: () => {
-    const allowedOrigin = new URL(IFrameHelper.baseUrl).origin;
+    const allowedOrigin = new URL(window.$chatwoot.baseUrl).origin;
 
     window.onmessage = e => {
-      console.log('Message Origin:', e.origin);
-      console.log('Allowed Origin:', allowedOrigin);
-
       if (e.origin !== allowedOrigin) return;
-
       if (
         typeof e.data !== 'string' ||
         e.data.indexOf('chatwoot-widget:') !== 0
